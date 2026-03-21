@@ -1,0 +1,44 @@
+[
+  {
+    "id": "consumer-vpn-install-discovery",
+    "version": "1.0.0",
+    "title": "consumer vpn install-shaped discovery (file, registry, process)",
+    "description": "highlights recent activity that looks like consumer vpn installs or upgrades: file creates under known vendor paths or temp/downloads with installer-like names, uninstall-registry displayname matches, and noisy installer processes. exploratory only\u2014not proof of first-time install without a baseline.",
+    "tags": [
+      "vpn",
+      "mde",
+      "discovery",
+      "install"
+    ],
+    "tables": [
+      "DeviceFileEvents",
+      "DeviceRegistryEvents",
+      "DeviceProcessEvents"
+    ],
+    "mitre": [],
+    "githubRawKql": "https://raw.githubusercontent.com/shalloran/LOLVPN/main/queries/consumer-vpn-install-discovery/query.kql",
+    "githubManifest": "https://raw.githubusercontent.com/shalloran/LOLVPN/main/queries/consumer-vpn-install-discovery/manifest.yaml",
+    "githubBrowse": "https://github.com/shalloran/LOLVPN/tree/main/queries/consumer-vpn-install-discovery"
+  },
+  {
+    "id": "consumer-vpn-multi-source",
+    "version": "1.4.0",
+    "title": "consumer vpn signals across process, file, registry, and software inventory",
+    "description": "correlates common consumer vpn strings in mde process, file, and registry events with tvm software inventory rows. union uses a unified eventtime and inventory rows use the query run time as a synthetic sort key.",
+    "tags": [
+      "vpn",
+      "mde",
+      "inventory"
+    ],
+    "tables": [
+      "DeviceProcessEvents",
+      "DeviceFileEvents",
+      "DeviceRegistryEvents",
+      "DeviceTvmSoftwareInventory"
+    ],
+    "mitre": [],
+    "githubRawKql": "https://raw.githubusercontent.com/shalloran/LOLVPN/main/queries/consumer-vpn-multi-source/query.kql",
+    "githubManifest": "https://raw.githubusercontent.com/shalloran/LOLVPN/main/queries/consumer-vpn-multi-source/manifest.yaml",
+    "githubBrowse": "https://github.com/shalloran/LOLVPN/tree/main/queries/consumer-vpn-multi-source"
+  }
+]

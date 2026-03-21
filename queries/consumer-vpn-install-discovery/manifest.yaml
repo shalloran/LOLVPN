@@ -1,0 +1,41 @@
+id: consumer-vpn-install-discovery
+version: 1.0.0
+title: consumer vpn install-shaped discovery (file, registry, process)
+description: >
+  highlights recent activity that looks like consumer vpn installs or upgrades:
+  file creates under known vendor paths or temp/downloads with installer-like
+  names, uninstall-registry displayname matches, and noisy installer processes.
+  exploratory only—not proof of first-time install without a baseline.
+tags:
+  - vpn
+  - mde
+  - discovery
+  - install
+platforms:
+  - vendor: microsoft
+    product: defender-for-endpoint
+    notes: advanced hunting; timestamp on device tables; windows-centric paths
+tables:
+  - DeviceFileEvents
+  - DeviceRegistryEvents
+  - DeviceProcessEvents
+mitre: []
+performanceNotes: >
+  three legs with broad has_any; shorten lookback, trim path_tokens or
+  setup_names, or drop proc_installs union if msiexec/setup noise dominates.
+  summarize by devicename and signal before returning raw rows if the portal
+  row cap bites.
+falsePositives: >
+  upgrades, repairs, imaging, mdm redeploy, generic openvpn or wireguard
+  tooling, substring collisions on setup_names, and allowed corporate vpn
+  packages that share uninstall display strings.
+references:
+  - https://lolrmm.io/
+license: GPL-3.0
+author: lolvpn contributors
+implementations:
+  kql:
+    path: query.kql
+    notes: >
+      comment out or remove proc_installs from the union to reduce volume;
+      sentinel users may rename timestamp to timegenerated per workspace.

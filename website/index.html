@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LOLVPN — Living Off The Land VPN (queries)</title>
+    <meta
+      name="description"
+      content="Curated defensive KQL and metadata for consumer VPN-related visibility in Microsoft Defender."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site">
+      <div class="wrap">
+        <h1>LOLVPN</h1>
+        <p class="tagline">
+          Living Off The Land VPN — defensive queries and manifests for VPN-related software on endpoints. Same idea as
+          <a href="https://lolbas-project.github.io/">LOLBAS</a> and
+          <a href="https://lolrmm.io/">LOLRMM</a>, focused on consumer VPN signals in KQL.
+        </p>
+        <p class="refs">
+          <a id="link-repo" href="#">GitHub repository</a>
+          ·
+          <a id="link-profile" href="#">Maintainer</a>
+        </p>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <div class="panel">
+        <p>
+          Want to contribute? Open a
+          <a id="link-pr" href="#">pull request</a>
+          or
+          <a id="link-issues" href="#">issue</a>
+          to suggest queries or indicator tweaks.
+        </p>
+        <p>
+          Machine-readable list:
+          <a id="api-json" href="api/queries.json">queries.json</a>
+          (generated from each <code>queries/&lt;id&gt;/manifest.yaml</code>).
+        </p>
+      </div>
+
+      <h2>Queries</h2>
+      <label class="sr-only" for="filter">Filter table</label>
+      <input type="search" id="filter" placeholder="Filter by title, id, tag, table…" autocomplete="off" />
+      <p class="count" id="query-count">0 queries</p>
+      <p id="load-error" class="error" hidden></p>
+      <table id="query-table" hidden>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th class="hide-sm">Description</th>
+            <th>Tags</th>
+            <th class="hide-sm">Tables</th>
+            <th>Links</th>
+          </tr>
+        </thead>
+        <tbody id="query-tbody"></tbody>
+      </table>
+    </main>
+    <footer class="site">
+      <div class="wrap">
+        <p>
+          MITRE ATT&amp;CK® and ATT&amp;CK® are registered trademarks of The MITRE Corporation. Queries are for
+          defensive use only.
+        </p>
+        <p>
+          Maintainer:
+          <a id="link-profile-text" href="#">@username</a>
+          · GPL-3.0 · Not affiliated with LOLBAS, LOLRMM, or listed vendors.
+        </p>
+      </div>
+    </footer>
+    <script src="site-config.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+// lolvpn — curated consumer vpn process and service keywords
+// tuning: flip flags if you need unix kernel churn or generic wireguard interface names
+let excludeLinuxWireguardChurn = true;
+let excludeGenericWireguardNetworkSetup = true;
+let excludeDebianPoolArtifactNoise = true;
+// drop rows whose devicename contains any of these substrings (e.g. org hostname tokens you approve)
+let exclude_device_name_substrings = dynamic([]);
+// drop registry rows when key or valuedata contains any of these (e.g. wireguardtunnel$corp split-tunnel)
+let exclude_registry_substrings = dynamic([]);
+let vpn_indicators = dynamic([
+    "nordvpn", "expressvpn", "surfshark", "cyberghost", "privateinternetaccess",
+    "pia-service", "protonvpn", "windscribe", "tunnelbear", "hotspotshield",
+    "ipvanish", "mullvad", "hidemevpn", "hidemyvpn", "zenmate", "psiphon", "ultrasurf",
+    "holavpn", "hola-svc", "betternet", "touchvpn", "speedify",
+    "vyprvpn", "strongvpn", "purevpn", "atlasvpn", "mozillavpn",
+    "cloudflarewarp", "warp-svc", "openvpn-gui", "wireguard", "softether",
+    "hideme", "torguard", "astrill", "hsscp", "anchorfree"
+]);
+// tokens that suggest a commercial vpn context in macos networksetup output (not bare homelab interface names)
+let networksetup_brand_hints = dynamic([
+    "nordvpn", "nord ", "surfshark", "expressvpn", "cyberghost", "protonvpn", "proton ",
+    "windscribe", "tunnelbear", "mullvad", "privateinternet", "ipvanish", "strongvpn",
+    "purevpn", "vypr", "zenmate", "psiphon", "hola", "betternet", "touchvpn", "speedify",
+    "mozillavpn", "cloudflare", "warp", "torguard", "astrill", "hotspot", "anchorfree",
+    "atlasvpn", "hideme", "hide.me", "softether", "openvpn", "cyberghostvpn", "pia"
+]);
+// process creation events matching vpn indicators
+let process_hits = DeviceProcessEvents
+    | where Timestamp > ago(30d)
+    | where FileName has_any (vpn_indicators)
+        or ProcessCommandLine has_any (vpn_indicators)
+        or FolderPath has_any (vpn_indicators)
+    | where not(
+        excludeDebianPoolArtifactNoise
+        and FileName in~ ("rmdir", "xargs")
+        and ProcessCommandLine contains "/pool/main/")
+    | where not(
+        excludeLinuxWireguardChurn
+        and FolderPath startswith "/usr/"
+        and FileName in~ ("kmod", "modprobe", "cp", "realpath", "readlink")
+        and ProcessCommandLine contains "wireguard")
+    | where not(
+        excludeGenericWireguardNetworkSetup
+        and FileName =~ "networksetup"
+        and ProcessCommandLine contains "wireguard"
+        and not(ProcessCommandLine has_any (networksetup_brand_hints)))
+    | extend EventTime = Timestamp
+    | project EventTime, DeviceName, FileName, FolderPath,
+        ProcessCommandLine, AccountName, ActionType, Source = "ProcessEvent";
+// file creation events for vpn installers or binaries
+let file_hits = DeviceFileEvents
+    | where Timestamp > ago(30d)
+    | where FileName has_any (vpn_indicators)
+        or FolderPath has_any (vpn_indicators)
+    | where not(
+        FolderPath contains @"site-packages"
+        and FileName =~ "astrill-codesigning-cert.cer")
+    | extend EventTime = Timestamp
+    | project EventTime, DeviceName, FileName, FolderPath,
+        InitiatingProcessFileName, ActionType, Source = "FileEvent";
+// registry keys referencing vpn software
+let reg_hits = DeviceRegistryEvents
+    | where Timestamp > ago(30d)
+    | where RegistryKey has_any (vpn_indicators)
+        or RegistryValueData has_any (vpn_indicators)
+    | where not(
+        array_length(exclude_registry_substrings) > 0
+        and (
+            RegistryKey has_any (exclude_registry_substrings)
+            or RegistryValueData has_any (exclude_registry_substrings)))
+    | extend EventTime = Timestamp
+    | project EventTime, DeviceName, RegistryKey,
+        RegistryValueData, ActionType, Source = "RegistryEvent";
+// installed software inventory (synthetic eventtime for ordering only)
+let app_hits = DeviceTvmSoftwareInventory
+    | where SoftwareName has_any (vpn_indicators)
+    | extend EventTime = now()
+    | project EventTime, DeviceName, SoftwareName, SoftwareVersion, Source = "SoftwareInventory";
+// no materialize(): large unions can hit cache/memory limits in detail mode; this scans once per statement.
+let combined =
+    process_hits
+    | union file_hits, reg_hits, app_hits
+    | where not(
+        array_length(exclude_device_name_substrings) > 0
+        and DeviceName has_any (exclude_device_name_substrings));
+// output: keep exactly one tabular block below (summary vs raw rows).
+// --- summary (default; portal row cap friendly) ---
+combined
+| summarize Hits = count(), LastSeen = max(EventTime) by DeviceName, Source
+| sort by Hits desc, LastSeen desc
+// --- raw rows (comment the 3 lines above; uncomment the 3 below) ---
+// combined
+// | sort by EventTime desc
+// | take 10000

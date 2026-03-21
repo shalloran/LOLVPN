@@ -1,0 +1,51 @@
+// lolvpn — consumer vpn install-shaped activity (cdr-style discovery; tune lists and lookback)
+let lookback = 7d;
+let path_tokens = dynamic([
+    @"\NordVPN\", @"\NordSec\", @"\ExpressVPN\", @"\Proton\", @"\Surfshark\",
+    @"\CyberGhost\", @"\Windscribe\", @"\Cloudflare\WARP\", @"\WireGuard\",
+    @"\Mozilla VPN\", @"\Hotspot Shield\", @"\Private Internet Access\",
+    @"\PIA\", @"\TunnelBear\", @"\Mullvad VPN\", @"\ZenMate\", @"\hide.me VPN\"
+]);
+let setup_names = dynamic([
+    "nordvpnsetup", "expressvpn", "surfshark", "cyberghost", "protonvpn",
+    "windscribe", "cloudflare", "warp", "wireguard", "openvpn", "tunnelbear",
+    "mullvad", "zenmate", "hotspot", "hss_", "privateinternetaccess", "pia-"
+]);
+let display_tokens = dynamic([
+    "nordvpn", "expressvpn", "surfshark", "cyberghost", "proton vpn", "windscribe",
+    "cloudflare warp", "wireguard", "mozilla vpn", "hotspot shield",
+    "private internet access", "tunnelbear", "mullvad", "zenmate", "hide.me"
+]);
+let file_installs = DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType == "FileCreated"
+    | where FolderPath has_any (path_tokens)
+        or (FileName has_any (setup_names) and (
+            FolderPath contains @"\Downloads\"
+            or FolderPath contains @"\AppData\Local\Temp\"
+            or FolderPath contains @"\Program Files"
+            or FolderPath contains @"Program Files (x86)"))
+    | extend Signal = "FileCreated"
+    | project Timestamp, DeviceName, Signal, FileName, FolderPath,
+        InitiatingProcessFileName, InitiatingProcessCommandLine, ActionType;
+let reg_installs = DeviceRegistryEvents
+    | where Timestamp > ago(lookback)
+    | where RegistryKey contains @"\Microsoft\Windows\CurrentVersion\Uninstall"
+    | where RegistryValueName in~ ("DisplayName", "InstallLocation", "DisplayVersion")
+        or ActionType in~ ("RegistryValueSet", "RegistryKeyCreated")
+    | where RegistryValueData has_any (display_tokens)
+    | extend Signal = "UninstallKey"
+    | project Timestamp, DeviceName, Signal, RegistryKey, RegistryValueName,
+        RegistryValueData, ActionType, InitiatingProcessFileName;
+let proc_installs = DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName in~ ("msiexec.exe", "setup.exe", "install.exe")
+        or FileName has_any (setup_names)
+    | where ProcessCommandLine has_any (setup_names)
+        or ProcessCommandLine has_any (path_tokens)
+    | extend Signal = "InstallerProcess"
+    | project Timestamp, DeviceName, Signal, FileName, FolderPath,
+        ProcessCommandLine, AccountName, ActionType;
+file_installs
+| union reg_installs, proc_installs
+| sort by Timestamp desc

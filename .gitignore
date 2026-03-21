@@ -1,0 +1,27 @@
+# os
+.DS_Store
+Thumbs.db
+
+# editors
+*.swp
+*.swo
+*~
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# python (optional tooling)
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# node (optional site or validators later)
+node_modules/
+
+# build / export scratch
+dist/
+build/
+*.tmp

@@ -1,0 +1,48 @@
+id: consumer-vpn-multi-source
+version: 1.4.0
+title: consumer vpn signals across process, file, registry, and software inventory
+description: >
+  correlates common consumer vpn strings in mde process, file, and registry
+  events with tvm software inventory rows. union uses a unified eventtime and
+  inventory rows use the query run time as a synthetic sort key.
+tags:
+  - vpn
+  - mde
+  - inventory
+platforms:
+  - vendor: microsoft
+    product: defender-for-endpoint
+    notes: advanced hunting; query.kql uses timestamp on device tables
+tables:
+  - DeviceProcessEvents
+  - DeviceFileEvents
+  - DeviceRegistryEvents
+  - DeviceTvmSoftwareInventory
+mitre: []
+performanceNotes: >
+  broad has_any over 30d on four legs can be expensive; shorten the window or
+  tighten exclude_* lists. default output is summarize by devicename and source
+  to stay under the advanced hunting row cap (avoids random partial results).
+  for raw rows, use the detail block at the bottom of query.kql (combined |
+  sort | take); avoid materialize on huge unions in the portal. narrow device or
+  time if detail times out; use a search job for full export.
+falsePositives: >
+  legitimate consumer vpn installs, renamed paths, backup or mdm bundles
+  mentioning the same strings, substring collisions, generic openvpn/wireguard
+  tooling used without consumer branding, firefox or other browsers loading vpn
+  vendor urls, and enterprise split-tunnel wireguard-style service names in
+  registry. v1.1 drops common noise: debian mirror pool paths, python
+  trio test cert astrill-codesigning-cert.cer, macos networksetup homelab-style
+  wireguard interface names without brand tokens, and high-volume /usr/* tooling
+  touching wireguard; removed lantern token (english word collisions).
+references:
+  - https://lolrmm.io/
+  - https://lolbas-project.github.io/
+license: GPL-3.0
+author: lolvpn contributors
+implementations:
+  kql:
+    path: query.kql
+    notes: >
+      defender portal advanced hunting. optional approved-vpn allowlist pattern
+      matches lolrmm-style tuning.
