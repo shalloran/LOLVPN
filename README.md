@@ -2,7 +2,7 @@
 
 LOLVPN is a set of defensive queries and indicators focused on (mostly consumer) VPN (and related) software on desktop operating systems. The intention here is similar in spirit to [LOLRMM](https://lolrmm.io/) (which is a nod to the original project [LOLBAS](https://lolbas-project.github.io/)).
 
-This repo is focused on KQL in Defender (Microsoft Defender advanced hunting and related patterns) but the layout leaves room for other languages (SPL, Sigma, etc.) via the same manifest.
+This repo is focused on KQL in Defender (Microsoft Defender advanced hunting and related patterns) but the layout leaves room for other languages (SPL, Sigma, etc.) via the structure outlined.
 
 ## Repository layout
 
