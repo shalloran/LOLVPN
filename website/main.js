@@ -19,7 +19,9 @@
   const prof = document.getElementById("link-profile");
   prof.href = profileUrl;
   prof.textContent = `GitHub @${site.githubUsername}`;
-  document.getElementById("link-profile-text").textContent = `@${site.githubUsername}`;
+  const profFooter = document.getElementById("link-profile-text");
+  profFooter.href = profileUrl;
+  profFooter.textContent = `@${site.githubUsername}`;
 
   if (elApi) {
     elApi.href = new URL("api/queries.json", window.location.href).href;
