@@ -54,6 +54,24 @@ header.site {
   padding: 1.75rem 0;
 }
 
+.brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.brand-logo {
+  width: 5rem;
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+
+.brand-copy {
+  min-width: 0;
+}
+
 header.site h1 {
   margin: 0 0 0.35rem;
   font-size: 1.75rem;
@@ -221,6 +239,14 @@ footer.site a {
 @media (max-width: 720px) {
   .hide-sm {
     display: none;
+  }
+
+  .brand {
+    gap: 0.85rem;
+  }
+
+  .brand-logo {
+    width: 3.5rem;
   }
 
   th,
