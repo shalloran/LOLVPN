@@ -1,0 +1,183 @@
+# maps normalized detection tokens (from query.kql dynamic arrays) to one row on the site
+# when adding strings to queries, add aliases here or build_site_data.py will fail
+brands:
+  - id: astrill
+    name: Astrill
+    simpleIcon: null
+    aliases:
+      - astrill
+  - id: atlasvpn
+    name: Atlas VPN
+    simpleIcon: null
+    aliases:
+      - atlasvpn
+  - id: betternet
+    name: Betternet
+    simpleIcon: null
+    aliases:
+      - betternet
+  - id: cyberghost
+    name: CyberGhost
+    simpleIcon: null
+    aliases:
+      - cyberghost
+      - cyberghostvpn
+  - id: cloudflare-warp
+    name: Cloudflare WARP
+    simpleIcon: cloudflare
+    aliases:
+      - cloudflare
+      - cloudflarewarp
+      - warp
+      - warp-svc
+      - cloudflare warp
+  - id: expressvpn
+    name: ExpressVPN
+    simpleIcon: expressvpn
+    aliases:
+      - expressvpn
+  - id: hideme
+    name: hide.me
+    simpleIcon: null
+    aliases:
+      - hideme
+      - hidemyvpn
+      - hidemevpn
+      - hide.me
+      - hide.me vpn
+  - id: hola
+    name: Hola VPN
+    simpleIcon: null
+    aliases:
+      - hola
+      - holavpn
+      - hola-svc
+  - id: hotspot-shield
+    name: Hotspot Shield
+    simpleIcon: null
+    aliases:
+      - anchorfree
+      - hotspot
+      - hotspot shield
+      - hotspotshield
+      - hss_
+      - hsscp
+  - id: ipvanish
+    name: IPVanish
+    simpleIcon: null
+    aliases:
+      - ipvanish
+  - id: mullvad
+    name: Mullvad
+    simpleIcon: mullvad
+    aliases:
+      - mullvad
+      - mullvad vpn
+  - id: mozilla-vpn
+    name: Mozilla VPN
+    simpleIcon: mozilla
+    aliases:
+      - mozillavpn
+      - mozilla vpn
+  - id: nordvpn
+    name: NordVPN
+    simpleIcon: nordvpn
+    aliases:
+      - nordvpn
+      - nord
+      - nordvpnsetup
+      - nordsec
+  - id: openvpn
+    name: OpenVPN
+    simpleIcon: openvpn
+    aliases:
+      - openvpn
+      - openvpn-gui
+  - id: private-internet-access
+    name: Private Internet Access
+    simpleIcon: privateinternetaccess
+    aliases:
+      - pia
+      - pia-
+      - pia-service
+      - privateinternet
+      - privateinternetaccess
+      - private internet access
+  - id: protonvpn
+    name: Proton VPN
+    simpleIcon: protonvpn
+    aliases:
+      - proton
+      - protonvpn
+      - proton vpn
+  - id: psiphon
+    name: Psiphon
+    simpleIcon: null
+    aliases:
+      - psiphon
+  - id: purevpn
+    name: PureVPN
+    simpleIcon: null
+    aliases:
+      - purevpn
+  - id: softether
+    name: SoftEther VPN
+    simpleIcon: null
+    aliases:
+      - softether
+  - id: speedify
+    name: Speedify
+    simpleIcon: null
+    aliases:
+      - speedify
+  - id: strongvpn
+    name: StrongVPN
+    simpleIcon: null
+    aliases:
+      - strongvpn
+  - id: surfshark
+    name: Surfshark
+    simpleIcon: surfshark
+    aliases:
+      - surfshark
+  - id: touchvpn
+    name: TouchVPN
+    simpleIcon: null
+    aliases:
+      - touchvpn
+  - id: torguard
+    name: TorGuard
+    simpleIcon: null
+    aliases:
+      - torguard
+  - id: tunnelbear
+    name: TunnelBear
+    simpleIcon: null
+    aliases:
+      - tunnelbear
+  - id: ultrasurf
+    name: UltraSurf
+    simpleIcon: null
+    aliases:
+      - ultrasurf
+  - id: windscribe
+    name: Windscribe
+    simpleIcon: null
+    aliases:
+      - windscribe
+  - id: wireguard
+    name: WireGuard
+    simpleIcon: wireguard
+    aliases:
+      - wireguard
+  - id: vyprvpn
+    name: VyprVPN
+    simpleIcon: null
+    aliases:
+      - vypr
+      - vyprvpn
+  - id: zenmate
+    name: ZenMate
+    simpleIcon: null
+    aliases:
+      - zenmate

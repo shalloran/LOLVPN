@@ -12,6 +12,12 @@
   const elCount = document.getElementById("query-count");
   const elErr = document.getElementById("load-error");
   const elApi = document.getElementById("api-json");
+  const elApiTracked = document.getElementById("api-tracked");
+
+  const elVpnGrid = document.getElementById("vpn-grid");
+  const elVpnFilter = document.getElementById("vpn-filter");
+  const elVpnCount = document.getElementById("vpn-count");
+  const elVpnErr = document.getElementById("vpn-load-error");
 
   document.getElementById("link-pr").href = `${repoBase}/pulls`;
   document.getElementById("link-issues").href = `${repoBase}/issues/new/choose`;
@@ -23,16 +29,33 @@
   profFooter.href = profileUrl;
   profFooter.textContent = `@${site.githubUsername}`;
 
+  const baseUrl = window.location.href;
   if (elApi) {
-    elApi.href = new URL("api/queries.json", window.location.href).href;
+    elApi.href = new URL("api/queries.json", baseUrl).href;
+  }
+  if (elApiTracked) {
+    elApiTracked.href = new URL("api/tracked-vpns.json", baseUrl).href;
   }
 
   let rows = [];
+  let vpnBrands = [];
+  let browseByQueryId = {};
 
   function esc(s) {
     const d = document.createElement("div");
     d.textContent = s;
     return d.innerHTML;
+  }
+
+  function initialsFromName(name) {
+    const parts = name
+      .replace(/[^a-z0-9]+/gi, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    if (parts.length === 0) return "?";
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[1][0]).toUpperCase();
   }
 
   function render(list) {
@@ -76,20 +99,114 @@
     );
   }
 
-  fetch("api/queries.json")
-    .then((r) => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  function uniqueQueryIds(refs) {
+    const seen = new Set();
+    const out = [];
+    for (const r of refs || []) {
+      if (!seen.has(r.id)) {
+        seen.add(r.id);
+        out.push(r.id);
+      }
+    }
+    return out;
+  }
+
+  function renderVpns(list) {
+    elVpnGrid.innerHTML = list
+      .map((b) => {
+        const tokenSpans = (b.tokens || [])
+          .map((t) => `<span class="vpn-token" title="${esc(t)}">${esc(t)}</span>`)
+          .join("");
+        const qids = uniqueQueryIds(b.queries).sort();
+        const qLinks = qids
+          .map((id) => {
+            const href = browseByQueryId[id] || `${repoBase}/tree/main/queries/${id}`;
+            return `<a href="${esc(href)}">${esc(id)}</a>`;
+          })
+          .join("");
+        const logo = b.logoUrl
+          ? `<img src="${esc(b.logoUrl)}" alt="" width="32" height="32" loading="lazy" decoding="async" data-fallback="${esc(initialsFromName(b.name))}" />`
+          : "";
+        const markInner = logo
+          ? logo
+          : `<span class="vpn-mark-fallback">${esc(initialsFromName(b.name))}</span>`;
+        return `<article class="vpn-card" data-id="${esc(b.id)}">
+          <div class="vpn-card-head">
+            <div class="vpn-mark">${markInner}</div>
+            <h3>${esc(b.name)}</h3>
+          </div>
+          <p class="vpn-tokens-label">Detection literals</p>
+          <div class="vpn-tokens">${tokenSpans || `<span class="vpn-token">—</span>`}</div>
+          <p class="vpn-queries">Queries: ${qLinks || "—"}</p>
+        </article>`;
+      })
+      .join("");
+
+    elVpnGrid.querySelectorAll(".vpn-mark img").forEach((img) => {
+      img.addEventListener("error", () => {
+        const fb = img.getAttribute("data-fallback") || "?";
+        const wrap = img.parentElement;
+        if (wrap) {
+          wrap.innerHTML = `<span class="vpn-mark-fallback">${esc(fb)}</span>`;
+        }
+      });
+    });
+
+    elVpnCount.textContent = `${list.length} vendor${list.length === 1 ? "" : "s"}`;
+  }
+
+  function applyVpnFilter() {
+    const q = (elVpnFilter.value || "").trim().toLowerCase();
+    if (!q) {
+      renderVpns(vpnBrands);
+      return;
+    }
+    renderVpns(
+      vpnBrands.filter((b) => {
+        const hay = [
+          b.id,
+          b.name,
+          ...(b.tokens || []),
+          ...(b.queries || []).map((r) => `${r.id} ${r.array}`),
+        ]
+          .join(" ")
+          .toLowerCase();
+        return hay.includes(q);
+      }),
+    );
+  }
+
+  Promise.all([
+    fetch(new URL("api/queries.json", baseUrl).href).then((r) => {
+      if (!r.ok) throw new Error(`queries.json HTTP ${r.status}`);
       return r.json();
-    })
-    .then((data) => {
-      if (!Array.isArray(data)) throw new Error("invalid json");
-      rows = data;
+    }),
+    fetch(new URL("api/tracked-vpns.json", baseUrl).href).then((r) => {
+      if (!r.ok) throw new Error(`tracked-vpns.json HTTP ${r.status}`);
+      return r.json();
+    }),
+  ])
+    .then(([queries, tracked]) => {
+      if (!Array.isArray(queries)) throw new Error("invalid queries json");
+      rows = queries;
+      browseByQueryId = Object.fromEntries(rows.map((q) => [q.id, q.githubBrowse]));
+
       elTable.hidden = false;
       render(rows);
       elFilter.addEventListener("input", applyFilter);
+
+      const brands = tracked && Array.isArray(tracked.brands) ? tracked.brands : [];
+      vpnBrands = brands;
+      elVpnGrid.hidden = false;
+      renderVpns(vpnBrands);
+      elVpnFilter.addEventListener("input", applyVpnFilter);
     })
     .catch((e) => {
       elErr.hidden = false;
-      elErr.textContent = `Could not load query list (${e.message}). For local file:// preview, run: python scripts/build_site_data.py`;
+      elErr.textContent = `Could not load site data (${e.message}). For local file:// preview, run: python scripts/build_site_data.py`;
+      if (elVpnErr) {
+        elVpnErr.hidden = false;
+        elVpnErr.textContent = elErr.textContent;
+      }
     });
 })();

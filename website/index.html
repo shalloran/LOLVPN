@@ -54,8 +54,27 @@
           Machine-readable list:
           <a id="api-json" href="api/queries.json">queries.json</a>
           (generated from each <code>queries/&lt;id&gt;/manifest.yaml</code>).
+          Tracked vendor coverage:
+          <a id="api-tracked" href="api/tracked-vpns.json">tracked-vpns.json</a>
+          (derived from KQL string lists + <code>data/vpn-brands.yaml</code>).
         </p>
       </div>
+
+      <h2>Tracked consumer VPNs</h2>
+      <p class="vpn-lede">
+        Grouped vendor rows built from the same literals used in our detection queries (plus path and uninstall-string variants on Windows). Logos use
+        <a href="https://simpleicons.org/">Simple Icons</a> (CC0) when a glyph exists; otherwise initials.
+      </p>
+      <label class="sr-only" for="vpn-filter">Filter VPN list</label>
+      <input
+        type="search"
+        id="vpn-filter"
+        placeholder="Filter by vendor name or detection token…"
+        autocomplete="off"
+      />
+      <p class="count" id="vpn-count">0 vendors</p>
+      <p id="vpn-load-error" class="error" hidden></p>
+      <div id="vpn-grid" class="vpn-grid" hidden></div>
 
       <h2>Queries</h2>
       <label class="sr-only" for="filter">Filter table</label>

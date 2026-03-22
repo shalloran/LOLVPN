@@ -1,0 +1,787 @@
+{
+  "simpleIconsVersion": "16.13.0",
+  "brands": [
+    {
+      "id": "astrill",
+      "name": "Astrill",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "astrill"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "atlasvpn",
+      "name": "Atlas VPN",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "atlasvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "betternet",
+      "name": "Betternet",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "betternet"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare-warp",
+      "name": "Cloudflare WARP",
+      "simpleIcon": "cloudflare",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/cloudflare.svg",
+      "tokens": [
+        "\\Cloudflare\\WARP\\",
+        "cloudflare",
+        "cloudflare warp",
+        "cloudflarewarp",
+        "warp",
+        "warp-svc"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "cyberghost",
+      "name": "CyberGhost",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "\\CyberGhost\\",
+        "cyberghost",
+        "cyberghostvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "expressvpn",
+      "name": "ExpressVPN",
+      "simpleIcon": "expressvpn",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/expressvpn.svg",
+      "tokens": [
+        "\\ExpressVPN\\",
+        "expressvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "hideme",
+      "name": "hide.me",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "\\hide.me VPN\\",
+        "hide.me",
+        "hideme",
+        "hidemevpn",
+        "hidemyvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "hola",
+      "name": "Hola VPN",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "hola",
+        "hola-svc",
+        "holavpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "hotspot-shield",
+      "name": "Hotspot Shield",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "\\Hotspot Shield\\",
+        "anchorfree",
+        "hotspot",
+        "hotspot shield",
+        "hotspotshield",
+        "hss_",
+        "hsscp"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "ipvanish",
+      "name": "IPVanish",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "ipvanish"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "mozilla-vpn",
+      "name": "Mozilla VPN",
+      "simpleIcon": "mozilla",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/mozilla.svg",
+      "tokens": [
+        "\\Mozilla VPN\\",
+        "mozilla vpn",
+        "mozillavpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "mullvad",
+      "name": "Mullvad",
+      "simpleIcon": "mullvad",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/mullvad.svg",
+      "tokens": [
+        "\\Mullvad VPN\\",
+        "mullvad"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "nordvpn",
+      "name": "NordVPN",
+      "simpleIcon": "nordvpn",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/nordvpn.svg",
+      "tokens": [
+        "\\NordSec\\",
+        "\\NordVPN\\",
+        "nord ",
+        "nordvpn",
+        "nordvpnsetup"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "openvpn",
+      "name": "OpenVPN",
+      "simpleIcon": "openvpn",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/openvpn.svg",
+      "tokens": [
+        "openvpn",
+        "openvpn-gui"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "private-internet-access",
+      "name": "Private Internet Access",
+      "simpleIcon": "privateinternetaccess",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/privateinternetaccess.svg",
+      "tokens": [
+        "\\PIA\\",
+        "\\Private Internet Access\\",
+        "pia",
+        "pia-",
+        "pia-service",
+        "private internet access",
+        "privateinternet",
+        "privateinternetaccess"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "protonvpn",
+      "name": "Proton VPN",
+      "simpleIcon": "protonvpn",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/protonvpn.svg",
+      "tokens": [
+        "\\Proton\\",
+        "proton ",
+        "proton vpn",
+        "protonvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "psiphon",
+      "name": "Psiphon",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "psiphon"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "purevpn",
+      "name": "PureVPN",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "purevpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "softether",
+      "name": "SoftEther VPN",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "softether"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "speedify",
+      "name": "Speedify",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "speedify"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "strongvpn",
+      "name": "StrongVPN",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "strongvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "surfshark",
+      "name": "Surfshark",
+      "simpleIcon": "surfshark",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/surfshark.svg",
+      "tokens": [
+        "\\Surfshark\\",
+        "surfshark"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "torguard",
+      "name": "TorGuard",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "torguard"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "touchvpn",
+      "name": "TouchVPN",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "touchvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "tunnelbear",
+      "name": "TunnelBear",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "\\TunnelBear\\",
+        "tunnelbear"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "ultrasurf",
+      "name": "UltraSurf",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "ultrasurf"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "vyprvpn",
+      "name": "VyprVPN",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "vypr",
+        "vyprvpn"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "windscribe",
+      "name": "Windscribe",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "\\Windscribe\\",
+        "windscribe"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "wireguard",
+      "name": "WireGuard",
+      "simpleIcon": "wireguard",
+      "logoUrl": "https://cdn.jsdelivr.net/npm/simple-icons@16.13.0/icons/wireguard.svg",
+      "tokens": [
+        "\\WireGuard\\",
+        "wireguard"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    },
+    {
+      "id": "zenmate",
+      "name": "ZenMate",
+      "simpleIcon": null,
+      "logoUrl": null,
+      "tokens": [
+        "\\ZenMate\\",
+        "zenmate"
+      ],
+      "queries": [
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "display_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "path_tokens"
+        },
+        {
+          "id": "consumer-vpn-install-discovery",
+          "array": "setup_names"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "networksetup_brand_hints"
+        },
+        {
+          "id": "consumer-vpn-multi-source",
+          "array": "vpn_indicators"
+        }
+      ]
+    }
+  ]
+}
