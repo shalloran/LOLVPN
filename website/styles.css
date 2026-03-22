@@ -273,6 +273,7 @@ label.sr-only {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
+  min-width: 0;
   padding: 1rem 1.1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -326,10 +327,12 @@ label.sr-only {
 
 .vpn-card h3 {
   margin: 0;
+  min-width: 0;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.25;
   color: var(--text);
+  overflow-wrap: anywhere;
 }
 
 .vpn-tokens-label {
@@ -344,6 +347,7 @@ label.sr-only {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  min-width: 0;
 }
 
 .vpn-token {
@@ -354,31 +358,52 @@ label.sr-only {
   color: var(--accent);
   border: 1px solid rgba(126, 184, 255, 0.18);
   max-width: 100%;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .vpn-queries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.65rem;
+  min-width: 0;
   margin: 0;
   padding-top: 0.35rem;
   border-top: 1px solid rgba(42, 45, 61, 0.85);
   font-size: 0.75rem;
-  color: var(--muted);
   line-height: 1.45;
 }
 
-.vpn-queries a {
+.vpn-queries-prefix {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.vpn-query-link {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
   color: var(--violet);
   text-decoration: none;
   border-bottom: 1px solid rgba(184, 151, 245, 0.25);
-  margin-right: 0.5rem;
-  white-space: nowrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
-.vpn-queries a:hover {
+.vpn-query-link:hover {
   color: var(--neon);
   border-bottom-color: rgba(92, 224, 160, 0.45);
+}
+
+.vpn-queries-none {
+  color: var(--muted);
 }
 
 table {

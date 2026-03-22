@@ -118,12 +118,14 @@
           .map((t) => `<span class="vpn-token" title="${esc(t)}">${esc(t)}</span>`)
           .join("");
         const qids = uniqueQueryIds(b.queries).sort();
-        const qLinks = qids
-          .map((id) => {
-            const href = browseByQueryId[id] || `${repoBase}/tree/main/queries/${id}`;
-            return `<a href="${esc(href)}">${esc(id)}</a>`;
-          })
-          .join("");
+        const qLinksInner = qids.length
+          ? qids
+              .map((id) => {
+                const href = browseByQueryId[id] || `${repoBase}/tree/main/queries/${id}`;
+                return `<a class="vpn-query-link" href="${esc(href)}">${esc(id)}</a>`;
+              })
+              .join("")
+          : '<span class="vpn-queries-none">—</span>';
         const logo = b.logoUrl
           ? `<img src="${esc(b.logoUrl)}" alt="" width="32" height="32" loading="lazy" decoding="async" data-fallback="${esc(initialsFromName(b.name))}" />`
           : "";
@@ -137,7 +139,10 @@
           </div>
           <p class="vpn-tokens-label">Detection literals</p>
           <div class="vpn-tokens">${tokenSpans || `<span class="vpn-token">—</span>`}</div>
-          <p class="vpn-queries">Queries: ${qLinks || "—"}</p>
+          <div class="vpn-queries">
+            <span class="vpn-queries-prefix">Queries</span>
+            ${qLinksInner}
+          </div>
         </article>`;
       })
       .join("");
