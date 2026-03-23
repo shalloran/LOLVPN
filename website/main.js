@@ -127,7 +127,7 @@
               .join("")
           : '<span class="vpn-queries-none">—</span>';
         const logo = b.logoUrl
-          ? `<img src="${esc(b.logoUrl)}" alt="" width="32" height="32" loading="lazy" decoding="async" data-fallback="${esc(initialsFromName(b.name))}" />`
+          ? `<img src="${esc(b.logoUrl)}" alt="" width="46" height="46" loading="lazy" decoding="async" data-fallback="${esc(initialsFromName(b.name))}" />`
           : "";
         const markInner = logo
           ? logo

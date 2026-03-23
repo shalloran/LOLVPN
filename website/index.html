@@ -8,7 +8,7 @@
       name="description"
       content="Curated defensive KQL and metadata for consumer VPN-related visibility in Microsoft Defender."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -28,9 +28,9 @@
           <div class="brand-hero">
             <h1>LOLVPN</h1>
             <p class="tagline">
-              Living Off The Land VPN: defensive queries and manifests for VPN-related software on endpoints. Same idea as
+              Living Off The Land VPN: defensive queries and indicators for VPN-related software on endpoints. Same idea as
               <a href="https://lolbas-project.github.io/">LOLBAS</a> and
-              <a href="https://lolrmm.io/">LOLRMM</a>, focused on consumer VPN discovery via KQL (for now).
+              <a href="https://lolrmm.io/">LOLRMM</a>, focused on consumer VPN discovery via KQL (for now). Please contribute if you can!
             </p>
             <p class="refs">
               <a id="link-repo" href="#">GitHub repository</a>
@@ -48,7 +48,7 @@
           <a id="link-pr" href="#">pull request</a>
           or
           <a id="link-issues" href="#">issue</a>
-          to suggest queries or indicator tweaks.
+          to suggest queries, indicators, or additional vendors to track.
         </p>
         <p>
           Machine-readable list:
@@ -62,8 +62,8 @@
 
       <h2>Tracked consumer VPNs</h2>
       <p class="vpn-lede">
-        Grouped vendor rows built from the same literals used in our detection queries (plus path and uninstall-string variants on Windows). Logos use
-        <a href="https://simpleicons.org/">Simple Icons</a> (CC0) when a glyph exists; otherwise initials.
+        A searchable list of consumer VPNs tracked here via this project (plus path and uninstall-string variants on Windows). Logos use
+        <a href="https://simpleicons.org/">Simple Icons</a> (CC0) when a glyph exists, otherwise initials for now.
       </p>
       <label class="sr-only" for="vpn-filter">Filter VPN list</label>
       <input
@@ -107,7 +107,7 @@
         </p>
       </div>
     </footer>
-    <script src="site-config.js"></script>
-    <script src="main.js"></script>
+    <script src="site-config.js?v=4"></script>
+    <script src="main.js?v=4"></script>
   </body>
 </html>
